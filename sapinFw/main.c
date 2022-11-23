@@ -14,7 +14,7 @@ typedef struct _color_ {
 	byte B;
 } t_color;
 
-t_color[4] Palette;
+//t_color[4] Palette;
 
 
 //----------- Setup ----------------
