@@ -1,0 +1,5 @@
+#N canvas 654 120 357 235 12;
+#X text 68 19 [colors NAME LEN];
+#X obj 42 73 table R-\$1 \$2;
+#X obj 43 95 table G-\$1 \$2;
+#X obj 43 117 table B-\$1 \$2;

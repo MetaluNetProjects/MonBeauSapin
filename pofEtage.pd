@@ -1,0 +1,15 @@
+#N canvas 288 687 450 300 12;
+#X obj 94 20 r etageHead;
+#X obj 192 16 loadbang;
+#X obj 192 40 f \$1;
+#X obj 192 64 * 100;
+#X obj 94 180 clone tache 5 \$1;
+#X obj 94 125 s etageHead-\$1;
+#X obj 235 38 bng 19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000;
+#X obj 94 101 poftranslate;
+#X connect 0 0 7 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 7 3;
+#X connect 6 0 2 0;
+#X connect 7 0 5 0;
