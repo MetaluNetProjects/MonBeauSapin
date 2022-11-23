@@ -23,6 +23,9 @@
 #X obj 141 110 + 1;
 #X obj 141 144 * 2;
 #X obj 141 177 clip 0 1;
+#X obj 500 48 loadbang;
+#X obj 500 72 f \$1;
+#X obj 500 96 max 1;
 #X connect 0 0 7 0;
 #X connect 1 0 3 0;
 #X connect 2 0 6 0;
@@ -55,3 +58,7 @@
 #X connect 23 0 16 1;
 #X connect 23 0 17 1;
 #X connect 23 0 18 1;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 19 1;
+#X connect 26 0 22 1;

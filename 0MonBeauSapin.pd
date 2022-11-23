@@ -1,4 +1,4 @@
-#N canvas 1022 108 343 401 10;
+#N canvas 1022 135 343 401 10;
 #X declare -path Fraise;
 #X declare -path color;
 #X obj 41 20 pied/pied 0 12346;
@@ -67,7 +67,7 @@
 #X obj 112 163 hsl 80 16 0 255 0 0 empty empty empty -2 -8 0 10 -4034
 -1 -1 0 1;
 #X obj 110 121 nbx 2 20 0 19 0 0 empty empty empty 0 -8 0 15 -262144
--1 -1 8 256;
+-1 -1 0 256;
 #X obj 113 182 hsl 80 16 0 255 0 0 empty empty empty -2 -8 0 10 -4160
 -1 -1 0 1;
 #X obj 25 245 pack f f f;
@@ -189,8 +189,8 @@
 #X connect 62 0 58 0;
 #X connect 63 0 29 0;
 #X restore 251 101 pd dmx;
-#N canvas 1 81 1364 662 compute_color 0;
-#X obj 38 147 tgl 16 0 empty empty empty 0 -8 0 10 -262144 -1 -1 0
+#N canvas 421 81 1364 662 compute_color 1;
+#X obj 38 147 tgl 16 0 empty empty empty 0 -8 0 10 -262144 -1 -1 1
 1;
 #X obj 37 301 clone lumEtage 4;
 #X obj 419 497 s lumParams;
@@ -229,7 +229,7 @@
 #X obj 685 182 loadbang;
 #X msg 215 453 upmix \$1;
 #X obj 237 432 hsl 136 16 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 13500 1;
 #X msg 113 455 uptime \$1;
 #X msg 120 431 500;
 #X msg 10 431 100;
@@ -323,6 +323,7 @@
 #X obj 38 81 s SEQ_ON;
 #X obj 38 59 1;
 #X obj 38 169 metro 10;
+#X msg 535 245 0;
 #X connect 0 0 126 0;
 #X connect 3 0 2 0;
 #X connect 4 0 2 0;
@@ -359,6 +360,7 @@
 #X connect 33 0 15 0;
 #X connect 34 0 31 0;
 #X connect 35 0 2 0;
+#X connect 36 0 35 0;
 #X connect 37 0 2 0;
 #X connect 38 0 37 0;
 #X connect 39 0 37 0;
@@ -371,6 +373,7 @@
 #X connect 45 1 46 1;
 #X connect 46 0 47 0;
 #X connect 47 0 2 0;
+#X connect 48 0 49 0;
 #X connect 49 0 2 0;
 #X connect 51 0 46 0;
 #X connect 52 0 46 1;
@@ -441,12 +444,13 @@
 #X connect 123 0 0 0;
 #X connect 125 0 124 0;
 #X connect 126 0 28 0;
+#X connect 127 0 33 0;
 #X restore 142 178 pd compute_color;
 #X obj 50 179 # pof_visu;
 #X obj 56 241 pdcontrol;
 #X msg 56 220 dir;
 #X msg 56 265 \; pd open pof_visu.pd \$1;
-#X obj 238 32 tgl 30 0 SEQ_ON SEQ_ON SEQ_ON 0 -8 0 10 -4034 -1 -1 0
+#X obj 238 32 tgl 30 0 SEQ_ON SEQ_ON SEQ_ON 0 -8 0 10 -4034 -1 -1 1
 1;
 #X connect 6 0 8 0;
 #X connect 7 0 6 0;
