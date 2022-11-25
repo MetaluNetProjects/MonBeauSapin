@@ -1,3 +1,4 @@
-#N canvas 462 443 450 300 12;
+#N canvas 142 439 450 300 12;
 #X obj 37 20 clone lumTache 5 \$1;
 #X obj 203 20 colors \$1 10;
+#X obj 203 44 colors \$1-B 10;

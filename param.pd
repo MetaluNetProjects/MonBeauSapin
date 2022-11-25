@@ -1,0 +1,12 @@
+#N canvas 269 307 450 300 12;
+#X obj 106 118 hsl 90 15 0 1 0 0 param_\$1-snd param_\$1-rcv empty
+-2 -8 0 10 -262144 -1 -1 8900 1;
+#X obj 103 136 nbx 4 14 0 1 0 0 param_\$1-snd param_\$1-rcv empty 0
+-8 0 12 -262144 -1 -1 1 256;
+#X obj 241 88 r param_\$1-snd;
+#X obj 241 136 s param_\$1-rcv;
+#X msg 241 112 set \$1;
+#X obj 242 63 apf PRESETS \$1 param_\$1;
+#X connect 2 0 4 0;
+#X connect 4 0 3 0;
+#X coords 0 -1 1 1 100 53 1 100 100;
