@@ -1,6 +1,6 @@
 /*********************************************************************
- *               DMX master example for Versa1.0
- *	Output DMX frames to AUXSERIAL_TX  (K11 for Versa1.0)
+ *               DMX master example for Versa
+ *	Output DMX frames to AUXSERIAL_TX  (K11 for Versa)
  *********************************************************************/
 #define BOARD Versa2
 #include <fruit.h>
@@ -18,10 +18,6 @@ int etoileBout1[75];
 int etoileRout2[75];
 int etoileGout2[75];
 int etoileBout2[75];
-
-//byte etoileRout[150];
-//byte etoileGout[150];
-//byte etoileBout[150];
 
 byte ledMove;
 byte ledMoveStart = 9;
@@ -82,17 +78,11 @@ void fadeLeds() {
 			FADELED(chan, etoileRout1, chan, etoileR);
 			FADELED(chan, etoileGout1, chan, etoileG);
 			FADELED(chan, etoileBout1, chan, etoileB);
-			/*etoileRout1[chan] = etoileRout1[chan] - (etoileRout1[chan] >> FADE_FILTER) + etoileR[chan];
-			etoileGout1[chan] = etoileGout1[chan] - (etoileGout1[chan] >> FADE_FILTER) + etoileG[chan];
-			etoileBout1[chan] = etoileBout1[chan] - (etoileBout1[chan] >> FADE_FILTER) + etoileB[chan];*/
 		} else {
 			chan2 = chan - 75;
 			FADELED(chan2, etoileRout2, chan, etoileR);
 			FADELED(chan2, etoileGout2, chan, etoileG);
 			FADELED(chan2, etoileBout2, chan, etoileB);
-			/*etoileRout2[chan2] = etoileRout2[chan2] - (etoileRout2[chan2] >> FADE_FILTER) + etoileR[chan];
-			etoileGout2[chan2] = etoileGout2[chan2] - (etoileGout2[chan2] >> FADE_FILTER) + etoileG[chan];
-			etoileBout2[chan2] = etoileBout2[chan2] - (etoileBout2[chan2] >> FADE_FILTER) + etoileB[chan];*/
 		}
 		chan++;
 		if(chan == 150) chan = 0; 
@@ -126,40 +116,20 @@ void copyColor() {
 			DMXSet(c++, 255);
 			DMXSet(c++, 255);
 		} else {
-		#define setLed(col, num) DMXSet(c++, ((unsigned int)gain * (etoile##col##out##num[ledMoved] >> FADE_FILTER) >> 8));
+//#define setLed(col, num) DMXSet(c++, ((unsigned int)gain * (etoile##col##out##num[ledMoved] >> FADE_FILTER) >> 8));
+#define setLed(col, num) DMXSet(c++, etoile##col##out##num[ledMoved] >> FADE_FILTER);
 			if(ledMoved < 75) {
-				/*#if 1
-				DMXSet(c++, ((unsigned int)gain * (etoileRout1[ledMoved]) >> (8 + FADE_FILTER));
-				DMXSet(c++, ((unsigned int)gain * (etoileGout1[ledMoved]) >> (8 + FADE_FILTER));
-				DMXSet(c++, ((unsigned int)gain * (etoileBout1[ledMoved]) >> (8 + FADE_FILTER));
-				#else
-				DMXSet(c++, etoileR[ledMoved]);
-				DMXSet(c++, etoileG[ledMoved]);
-				DMXSet(c++, etoileB[ledMoved]);
-				#endif*/
 				setLed(R, 1);
 				setLed(G, 1);
 				setLed(B, 1);
 			} else {
 				ledMoved -= 75;
-				/*
-				#if 1
-				DMXSet(c++, ((unsigned int)gain * etoileRout2[ledMoved]) >> (8 + FADE_FILTER));
-				DMXSet(c++, ((unsigned int)gain * etoileGout2[ledMoved]) >> (8 + FADE_FILTER));
-				DMXSet(c++, ((unsigned int)gain * etoileBout2[ledMoved]) >> (8 + FADE_FILTER));
-				#else
-				DMXSet(c++, etoileR[ledMoved]);
-				DMXSet(c++, etoileG[ledMoved]);
-				DMXSet(c++, etoileB[ledMoved]);
-				#endif*/
 				setLed(R, 2);
 				setLed(G, 2);
 				setLed(B, 2);
 			}
 		}
 		led++;
-		//ledMoved++;
-		//if(ledMoved > 149) ledMoved = 0;
 		fraiseService();// listen to Fraise events
 		DMXService();	// DXM management routine
 	}
@@ -181,7 +151,6 @@ void loop() {
 		}
 		copyColor();
 		fadeLeds();
-		//ledMove++; if(ledMove > 149) ledMove = 0;
 	}
 
 }
@@ -197,8 +166,6 @@ void fraiseReceive() // receive raw bytes
 		PARAM_INT(30,i); DMXSet(i, fraiseGetChar()); break; // if first byte is 30 then get DMX channel (int) and value (char).
 		PARAM_INT(31, chan); len = fraiseGetLen() - 3;
 			while(len >= 3) {
-				/*val = fraiseGetChar();
-				DMXSet(chan, val);*/
 				etoileR[chan] = fraiseGetChar();
 				etoileG[chan] = fraiseGetChar();
 				etoileB[chan] = fraiseGetChar();
